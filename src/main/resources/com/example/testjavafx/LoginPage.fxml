@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="650.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testjavafx.LoginPage">
+   <children>
+      <TextField fx:id="usernameField" layoutX="427.0" layoutY="186.0" promptText="Enter your usename" style="-fx-background-color: #ebebe3; -fx-border-color: #4a4a48; -fx-cursor: text; -fx-background-radius: 30px; -fx-border-radius: 30px;" />
+      <PasswordField fx:id="passwordField" layoutX="427.0" layoutY="225.0" promptText="Enter your password" style="-fx-background-color: #ebebe3; -fx-border-color: #4a4a48; -fx-cursor: text; -fx-border-radius: 30px; -fx-background-radius: 30px;" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="403.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@iconimdb.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="400.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@movie.jpg" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="loginButton" cache="true" layoutX="427.0" layoutY="265.0" onAction="#handleLogin" prefHeight="26.0" prefWidth="151.0" style="-fx-background-color: #2b2b28; -fx-background-radius: 30px;" text="Login" textFill="#ebebe3">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </JFXButton>
+      <JFXButton layoutX="112.0" layoutY="187.0" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #2b2b28; -fx-background-radius: 30px;" text="SignUp" textFill="#ebebe3">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>

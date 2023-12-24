@@ -1,45 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="870.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testjavafx.AdminPage">
+<AnchorPane prefHeight="600.0" prefWidth="870.0" style="-fx-background-color: #1e2022;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testjavafx.AdminPage">
    <children>
-      <Label fx:id="welcomeLabel" layoutX="14.0" layoutY="10.0" text="Admin Dashboard" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
-
-      <!-- Movies Section -->
-      <Label layoutX="14.0" layoutY="60.0" text="Movies" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <ListView fx:id="moviesListView" layoutX="14.0" layoutY="90.0" prefHeight="180.0" prefWidth="840.0" />
-
-      <TextField fx:id="movieNameTextField" layoutX="14.0" layoutY="280.0" promptText="Enter Movie Name" />
-      <Button layoutX="250.0" layoutY="280.0" mnemonicParsing="false" onAction="#addMovie" text="Add Movie" />
-      <Button layoutX="400.0" layoutY="280.0" mnemonicParsing="false" onAction="#deleteMovie" text="Delete Selected Movie" />
-      <Button layoutX="550.0" layoutY="280.0" mnemonicParsing="false" onAction="#editMovie" text="Edit Selected Movie" />
-      <TextField fx:id="updatedMovieNameTextField" layoutX="700.0" layoutY="280.0" promptText="Enter Updated Movie Name" />
-
-      <!-- Users Section -->
-      <Label layoutX="14.0" layoutY="320.0" text="Users" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <ListView fx:id="usersListView" layoutX="14.0" layoutY="350.0" prefHeight="180.0" prefWidth="840.0" />
-
-      <TextField fx:id="userNameTextField" layoutX="14.0" layoutY="540.0" promptText="Enter User Name" />
-      <Button layoutX="250.0" layoutY="540.0" mnemonicParsing="false" onAction="#addUser" text="Add User" />
-      <Button layoutX="400.0" layoutY="540.0" mnemonicParsing="false" onAction="#deleteUser" text="Delete Selected User" />
-      <Button layoutX="550.0" layoutY="540.0" mnemonicParsing="false" onAction="#editUser" text="Edit Selected User" />
+      <AnchorPane fx:id="profile" layoutX="-27.0" prefHeight="606.0" prefWidth="250.0" style="-fx-background-color: #f0f5f9; -fx-background-radius: 20px;">
+         <children>
+            <ImageView fitHeight="93.0" fitWidth="89.0" layoutX="81.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@user_username_people_account_avatar_profile_person_icon_258962.png" />
+               </image>
+            </ImageView>
+            <JFXButton layoutX="32.0" layoutY="362.0" prefHeight="26.0" prefWidth="186.0" text="Add User" textFill="#52616b">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="33.0" layoutY="398.0" prefHeight="26.0" prefWidth="186.0" text="Add Review" textFill="#52616b">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="57.0" layoutY="543.0" prefHeight="30.0" prefWidth="137.0" text="SignOut" textFill="#52616b">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <Button fx:id="Movies" layoutX="99.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleMoviesButtonClick" text="Movies" />
+            <Button fx:id="DashBoard" layoutX="88.0" layoutY="277.0" mnemonicParsing="false" onAction="#handleDashboardButtonClick" text="DashBoard" />
+            <Label layoutX="52.0" layoutY="124.0" text="Welcome">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="moviesPane" layoutX="224.0" prefHeight="606.0" prefWidth="650.0" visible="false">
+         <children>
+            <AnchorPane fx:id="moviesPane1" layoutX="243.0" prefHeight="606.0" prefWidth="409.0">
+               <children>
+                  <JFXListView fx:id="moviesListView2" layoutX="14.0" prefHeight="606.4" prefWidth="409.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="moviesPane2" layoutY="1.0" prefHeight="606.0" prefWidth="242.0">
+               <children>
+                  <Button fx:id="ADDMovie" layoutX="11.0" layoutY="21.0" mnemonicParsing="false" onAction="#addMovie" text="Add Movie" />
+                  <Button fx:id="DeleteMovie" layoutX="78.0" layoutY="290.0" mnemonicParsing="false" onAction="#deleteMovie" text="Delete Movie" />
+                  <Button fx:id="EditMovie" layoutX="12.0" layoutY="461.0" mnemonicParsing="false" onAction="#editMovie" text="Edit Movie" />
+                  <TextField fx:id="movieNameTextField" layoutX="46.0" layoutY="66.0" promptText="name of movie" />
+                  <TextField fx:id="updatedMovieNameTextField" layoutX="46.0" layoutY="500.0" promptText="new name of movie" />
+                  <TextField fx:id="movieIdTextField" layoutX="47.0" layoutY="539.0" promptText="id of movie" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="DashBoardPane" layoutX="224.0" prefHeight="608.0" prefWidth="653.0">
+         <children>
+            <JFXListView fx:id="moviesListView" layoutX="99.0" layoutY="66.0" prefHeight="222.0" prefWidth="455.0" style="-fx-background-color: linear-gradient(#1e2022 0%, #52616b 25%, #c9d6df 75%, #f0f5f9 100%); -fx-background-radius: 20px;">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </JFXListView>
+            <JFXListView fx:id="usersListView" layoutX="99.0" layoutY="359.0" prefHeight="222.0" prefWidth="455.0" style="-fx-background-color: linear-gradient(#1e2022 0%, #52616b 25%, #c9d6df 75%, #f0f5f9 100%); -fx-background-radius: 20px;">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </JFXListView>
+      
+                  <Label layoutX="287.0" layoutY="14.0" prefHeight="29.0" prefWidth="79.0" style="-fx-border-color: linear-gradient(#1e2022 0%, #52616b 25%, #c9d6df 75%, #f0f5f9 100%); -fx-border-radius: 15px;" text="  Moveis" textAlignment="CENTER" textFill="#f0f5f9">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="298.0" layoutY="313.0" prefHeight="27.0" prefWidth="68.0" style="-fx-border-color: linear-gradient(#1e2022 0%, #52616b 25%, #c9d6df 75%, #f0f5f9 100%); -fx-border-radius: 15px;" text="  Users" textAlignment="CENTER" textFill="#f0f5f9">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

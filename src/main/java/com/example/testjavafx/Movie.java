@@ -150,6 +150,7 @@ public class Movie {
         }
     }
 
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

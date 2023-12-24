@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginPage {
+
     @FXML
     private TextField usernameField;
 
@@ -32,26 +33,34 @@ public class LoginPage {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
+        User authenticatedUser = authenticate(username, password);
+        if (authenticatedUser != null) {
+            navigateToAdminPage();
+        }
+    }
 
-
+    private User authenticate(String username, String password) {
         for (User user : DataBase.users) {
             if (username.equals(user.username) && password.equals(user.password)) {
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AdminPage.fxml"));
-                    Parent adminPageParent = fxmlLoader.load();
-                    AdminPage adminPageController = fxmlLoader.getController();
-                    adminPageController.setAuthenticatedUser(user);  // Pass the authenticated user
-
-                    Scene adminScene = new Scene(adminPageParent);
-
-                    Stage stage = (Stage) usernameField.getScene().getWindow();
-                    stage.setScene(adminScene);
-                    stage.setTitle("Admin Page");
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                return user;
             }
+        }
+        return null;
+    }
+
+    private void navigateToAdminPage() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AdminPage.fxml"));
+            Parent adminPageParent = fxmlLoader.load();
+
+            Scene adminScene = new Scene(adminPageParent);
+
+            Stage stage = (Stage) usernameField.getScene().getWindow();
+            stage.setScene(adminScene);
+            stage.setTitle("Admin Page");
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading the admin page: " + e.getMessage());
         }
     }
 }

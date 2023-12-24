@@ -2,10 +2,16 @@ package com.example.testjavafx;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class AdminPage {
@@ -44,6 +50,8 @@ public class AdminPage {
 
     @FXML
     private Button EditMovie;
+    @FXML
+    private Button SignOut;
     @FXML
     private AnchorPane profile;
     @FXML
@@ -106,6 +114,27 @@ public class AdminPage {
         DashBoardPane.setVisible(true);
         hideAllMoviePanes();
     }
+    @FXML
+    private void handleSignOutButtonClick(ActionEvent event) {
+        // Access the Stage
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        try {
+            // Load LoginPage.fxml
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
+            Parent loginPageParent = fxmlLoader.load();
+
+            // Create a new Scene with the login page and set it to the Stage
+            Scene loginScene = new Scene(loginPageParent);
+            currentStage.setScene(loginScene);
+            currentStage.setTitle("Login Page");
+            currentStage.show();
+
+        } catch (IOException e) {
+            System.err.println("Error loading the login page: " + e.getMessage());
+        }
+    }
+
 
     @FXML
     private void addMovie() {

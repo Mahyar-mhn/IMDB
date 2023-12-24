@@ -31,18 +31,18 @@
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="57.0" layoutY="543.0" prefHeight="30.0" prefWidth="137.0" text="SignOut" textFill="#52616b">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXButton>
-            <Button fx:id="Movies" layoutX="99.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleMoviesButtonClick" text="Movies" />
+            <Button fx:id="Movies" layoutX="99.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleMoviesButtonClick" text="Movies" />
             <Button fx:id="DashBoard" layoutX="88.0" layoutY="277.0" mnemonicParsing="false" onAction="#handleDashboardButtonClick" text="DashBoard" />
             <Label layoutX="52.0" layoutY="124.0" text="Welcome">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
+            <Button fx:id="SignOut" layoutX="91.0" layoutY="562.0" mnemonicParsing="false" onAction="#handleSignOutButtonClick" text="SignOut">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="moviesPane" layoutX="224.0" prefHeight="606.0" prefWidth="650.0" visible="false">

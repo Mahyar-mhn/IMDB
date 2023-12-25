@@ -23,6 +23,9 @@ public class AdminPage {
 
     @FXML
     private ListView<User> usersListView;
+    @FXML
+    private ListView<User> usersListView2;
+
 
     @FXML
     private TextField movieNameTextField;
@@ -32,26 +35,8 @@ public class AdminPage {
 
     @FXML
     private TextField updatedMovieNameTextField; // To enter the updated movie name
-
-    @FXML
-    private TextField updatedMovieDetailsTextField; // You can add more fields as needed
     @FXML
     private TextField userNameTextField;
-    @FXML
-    private Button Movies;
-    @FXML
-    private Button DashBoard;
-
-    @FXML
-    private Button ADDMovie;
-
-    @FXML
-    private Button DeleteMovie;
-
-    @FXML
-    private Button EditMovie;
-    @FXML
-    private Button SignOut;
     @FXML
     private AnchorPane profile;
     @FXML
@@ -62,12 +47,21 @@ public class AdminPage {
     private AnchorPane moviesPane1;
     @FXML
     private AnchorPane moviesPane2;
+    @FXML
+    private AnchorPane UserPane;
+    @FXML
+    private AnchorPane UserPane1;
+    @FXML
+    private AnchorPane UserPane2;
+
+
 
 
     public void initialize() {
         DashBoardPane.setVisible(true);
         profile.setVisible(true);
         hideAllMoviePanes();
+        hideAllUserPanes();
         populateLists();
     }
 
@@ -76,11 +70,17 @@ public class AdminPage {
         moviesPane1.setVisible(false);
         moviesPane2.setVisible(false);
     }
+    private void hideAllUserPanes() {
+        UserPane.setVisible(false);
+        UserPane1.setVisible(false);
+        UserPane2.setVisible(false);
+    }
 
     private void populateLists() {
         moviesListView.getItems().addAll(DataBase.movies);
         moviesListView2.getItems().addAll(DataBase.movies);
         usersListView.getItems().addAll(DataBase.users);
+        usersListView2.getItems().addAll(DataBase.users);
         moviesListView.setCellFactory(list -> new ColoredListCell<>());
         usersListView.setCellFactory(list -> new ColoredListCell<>());
     }
@@ -104,16 +104,30 @@ public class AdminPage {
     private void handleMoviesButtonClick(ActionEvent event) {
         DashBoardPane.setVisible(false);
         hideAllMoviePanes();
+        hideAllUserPanes();
         moviesPane.setVisible(true);
         moviesPane1.setVisible(true);
         moviesPane2.setVisible(true);
+    }
+    @FXML
+    private void handleUsersButtonClick(ActionEvent event) {
+        DashBoardPane.setVisible(false);
+        hideAllMoviePanes();
+        moviesPane.setVisible(false);
+        moviesPane1.setVisible(false);
+        moviesPane2.setVisible(false);
+        UserPane.setVisible(true);
+        UserPane1.setVisible(true);
+        UserPane2.setVisible(true);
     }
 
     @FXML
     private void handleDashboardButtonClick(ActionEvent event) {
         DashBoardPane.setVisible(true);
         hideAllMoviePanes();
+        hideAllUserPanes();
     }
+
     @FXML
     private void handleSignOutButtonClick(ActionEvent event) {
         // Access the Stage
@@ -141,6 +155,7 @@ public class AdminPage {
         String movieName = movieNameTextField.getText().trim();
         if (!movieName.isEmpty()) {
             Movie newMovie = new Movie();
+            newMovie.setTitle(movieName);
             DataBase.movies.add(newMovie);
             refreshMovieLists();
         }
@@ -149,6 +164,10 @@ public class AdminPage {
     private void refreshMovieLists() {
         moviesListView2.getItems().setAll(DataBase.movies);
         moviesListView.getItems().setAll(DataBase.movies);
+    }
+    private void refreshUserLists() {
+        usersListView.getItems().setAll(DataBase.users);
+        usersListView2.getItems().setAll(DataBase.users);
     }
 
     @FXML
@@ -195,17 +214,18 @@ public class AdminPage {
         String userName = userNameTextField.getText().trim();
         if (!userName.isEmpty()) {
             User newUser = new User();
+            newUser.setUsername(userName);
             DataBase.users.add(newUser);
-            usersListView.getItems().add(newUser);
         }
+        refreshUserLists();
     }
 
     @FXML
     private void deleteUser() {
-        User selectedUser = usersListView.getSelectionModel().getSelectedItem();
+        User selectedUser = usersListView2.getSelectionModel().getSelectedItem();
         if (selectedUser != null && showDeleteConfirmation("Delete User")) {
             DataBase.users.remove(selectedUser);
-            usersListView.getItems().remove(selectedUser);
+            refreshUserLists();
         }
     }
 }

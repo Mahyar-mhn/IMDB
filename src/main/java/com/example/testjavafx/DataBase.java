@@ -7,6 +7,7 @@ public class DataBase {
     static ArrayList<User> users = new ArrayList<>();
     static ArrayList<Movie> movies = new ArrayList<>();
     static ArrayList<Review> reviews = new ArrayList<>();
+    int id=1;
 
     public void initializeAPP() {
         // Create and add an admin user
@@ -14,11 +15,12 @@ public class DataBase {
         users.add(admin);
 
         // Create movies
-        createAndAddMovie(1, "First Movie", Genre.ACTION, 5, "sampleTrailer1", "Summary 1", "posterURL1", "English");
-        createAndAddMovie(2, "Second Movie", Genre.COMEDY, 4, "sampleTrailer2", "Summary 2", "posterURL2", "English");
-        createAndAddMovie(3, "Third Movie", Genre.DRAMA, 4, "sampleTrailer3", "Summary 3", "posterURL3", "Spanish");
-        createAndAddMovie(4, "Fourth Movie", Genre.HORROR, 3, "sampleTrailer4", "Summary 4", "posterURL4", "English");
-        createAndAddMovie(5, "Fifth Movie", Genre.SCIENCE_FICTION, 4, "sampleTrailer5", "Summary 5", "posterURL5", "English");
+        createAndAddMovie( id++,"First Movie", Genre.ACTION, 5, "sampleTrailer1", "Summary 1", "posterURL1", "English");
+        createAndAddMovie(id++,"Second Movie", Genre.COMEDY, 4, "sampleTrailer2", "Summary 2", "posterURL2", "English");
+        createAndAddMovie( id++,"Third Movie", Genre.DRAMA, 4, "sampleTrailer3", "Summary 3", "posterURL3", "Spanish");
+        createAndAddMovie(id++,"Fourth Movie", Genre.HORROR, 3, "sampleTrailer4", "Summary 4", "posterURL4", "English");
+        createAndAddMovie(id++,"Fifth Movie", Genre.SCIENCE_FICTION, 4, "sampleTrailer5", "Summary 5", "posterURL5", "English");
+
     }
 
     private void createAndAddMovie(int id, String title, Genre genre, int rate, String trailer, String summary, String poster, String language) {
@@ -29,6 +31,7 @@ public class DataBase {
         ArrayList<Review> reviewsList = new ArrayList<>();
         ArrayList<Report> reportsList = new ArrayList<>();
         ArrayList<Staff> staffList = new ArrayList<>();
+
 
         // Create a new instance of the Movie class and add it to the movies list
         Movie movie = new Movie(id, title, genre, rate, 0.0, trailer, summary, poster, language, releaseDate, reviewsList, reportsList, staffList);

@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -21,11 +22,6 @@
                   <Image url="@user_username_people_account_avatar_profile_person_icon_258962.png" />
                </image>
             </ImageView>
-            <JFXButton layoutX="32.0" layoutY="362.0" prefHeight="26.0" prefWidth="186.0" text="Add User" textFill="#52616b">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXButton>
             <JFXButton layoutX="33.0" layoutY="398.0" prefHeight="26.0" prefWidth="186.0" text="Add Review" textFill="#52616b">
                <font>
                   <Font size="14.0" />
@@ -43,6 +39,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
+            <Button fx:id="Users" layoutX="102.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleUsersButtonClick" text="Users" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="moviesPane" layoutX="224.0" prefHeight="606.0" prefWidth="650.0" visible="false">
@@ -64,7 +61,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="DashBoardPane" layoutX="224.0" prefHeight="608.0" prefWidth="653.0">
+      <AnchorPane fx:id="DashBoardPane" layoutX="224.0" prefHeight="608.0" prefWidth="653.0" visible="false">
          <children>
             <JFXListView fx:id="moviesListView" layoutX="99.0" layoutY="66.0" prefHeight="222.0" prefWidth="455.0" style="-fx-background-color: linear-gradient(#1e2022 0%, #52616b 25%, #c9d6df 75%, #f0f5f9 100%); -fx-background-radius: 20px;">
                <effect>
@@ -95,6 +92,24 @@
                   <Font size="18.0" />
                </font>
             </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="UserPane" layoutX="224.0" layoutY="195.0" prefHeight="608.0" prefWidth="654.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="224.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="UserPane1" layoutX="310.0" layoutY="1.0" prefHeight="606.0" prefWidth="343.0">
+               <children>
+                  <ListView fx:id="usersListView2" prefHeight="608.0" prefWidth="343.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="UserPane2" layoutX="5.0" layoutY="4.0" prefHeight="606.0" prefWidth="310.0">
+               <children>
+                  <Button fx:id="AddUser" layoutX="105.0" layoutY="228.0" mnemonicParsing="false" onAction="#addUser" text="Add User" />
+                  <Button fx:id="DeleteUser" layoutX="99.0" layoutY="290.0" mnemonicParsing="false" onAction="#deleteUser" text="Delete User" />
+                  <Button fx:id="EditUser" layoutX="106.0" layoutY="347.0" mnemonicParsing="false" text="Edit User" />
+                  <Button fx:id="BanUser" layoutX="106.0" layoutY="402.0" mnemonicParsing="false" text="Ban User" />
+                  <TextField fx:id="userNameTextField" layoutX="63.0" layoutY="179.0" />
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

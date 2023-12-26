@@ -103,11 +103,13 @@
             </AnchorPane>
             <AnchorPane fx:id="UserPane2" layoutX="5.0" layoutY="4.0" prefHeight="606.0" prefWidth="310.0">
                <children>
-                  <Button fx:id="AddUser" layoutX="105.0" layoutY="228.0" mnemonicParsing="false" onAction="#addUser" text="Add User" />
-                  <Button fx:id="DeleteUser" layoutX="99.0" layoutY="290.0" mnemonicParsing="false" onAction="#deleteUser" text="Delete User" />
-                  <Button fx:id="EditUser" layoutX="106.0" layoutY="347.0" mnemonicParsing="false" text="Edit User" />
-                  <Button fx:id="BanUser" layoutX="106.0" layoutY="402.0" mnemonicParsing="false" text="Ban User" />
-                  <TextField fx:id="userNameTextField" layoutX="63.0" layoutY="179.0" />
+                  <Button fx:id="AddUser" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#addUser" text="Add User" />
+                  <Button fx:id="DeleteUser" layoutX="99.0" layoutY="232.0" mnemonicParsing="false" onAction="#deleteUser" text="Delete User" />
+                  <Button fx:id="EditUser" layoutX="15.0" layoutY="477.0" mnemonicParsing="false" onAction="#editUser" text="Edit User" />
+                  <Button fx:id="BanUser" layoutX="106.0" layoutY="303.0" mnemonicParsing="false" onAction="#banUser" text="Ban User" />
+                  <TextField fx:id="userNameTextField" layoutX="31.0" layoutY="49.0" promptText="name of user" />
+                  <TextField fx:id="updatedUserNameTextField" layoutX="25.0" layoutY="524.0" promptText="new name of User" />
+                  <TextField fx:id="userIdTextField" layoutX="25.0" layoutY="567.0" promptText="Id of User" />
                </children>
             </AnchorPane>
          </children>

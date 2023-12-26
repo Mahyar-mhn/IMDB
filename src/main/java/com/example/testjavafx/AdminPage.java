@@ -36,6 +36,12 @@ public class AdminPage {
     @FXML
     private TextField updatedMovieNameTextField; // To enter the updated movie name
     @FXML
+    private TextField userIdTextField; // To enter the ID of the movie to be edited
+
+    @FXML
+    private TextField updatedUserNameTextField; // To enter the updated movie name
+
+    @FXML
     private TextField userNameTextField;
     @FXML
     private AnchorPane profile;
@@ -53,8 +59,6 @@ public class AdminPage {
     private AnchorPane UserPane1;
     @FXML
     private AnchorPane UserPane2;
-
-
 
 
     public void initialize() {
@@ -101,7 +105,7 @@ public class AdminPage {
     }
 
     @FXML
-    private void handleMoviesButtonClick(ActionEvent event) {
+    private void handleMoviesButtonClick() {
         DashBoardPane.setVisible(false);
         hideAllMoviePanes();
         hideAllUserPanes();
@@ -110,7 +114,7 @@ public class AdminPage {
         moviesPane2.setVisible(true);
     }
     @FXML
-    private void handleUsersButtonClick(ActionEvent event) {
+    private void handleUsersButtonClick() {
         DashBoardPane.setVisible(false);
         hideAllMoviePanes();
         moviesPane.setVisible(false);
@@ -122,7 +126,7 @@ public class AdminPage {
     }
 
     @FXML
-    private void handleDashboardButtonClick(ActionEvent event) {
+    private void handleDashboardButtonClick() {
         DashBoardPane.setVisible(true);
         hideAllMoviePanes();
         hideAllUserPanes();
@@ -228,4 +232,37 @@ public class AdminPage {
             refreshUserLists();
         }
     }
+    @FXML
+    private void editUser(){
+        try {
+            int userid = Integer.parseInt(userIdTextField.getText().trim());
+            String updatedUserName = updatedUserNameTextField.getText().trim();
+            Optional<User> optionalUserToEdit = DataBase.users.stream()
+                    .filter(m -> m.getId() == userid)
+                    .findFirst();
+
+            if (optionalUserToEdit.isPresent()) {
+                optionalUserToEdit.get().setUsername(updatedUserName);
+                refreshUserLists();
+                System.out.println("User edited successfully");
+            } else {
+                System.out.println("User not found!!!");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid user ID format!");
+        }
+    }
+
+    @FXML
+    private void banUser() {
+        User selectedUser = usersListView2.getSelectionModel().getSelectedItem();
+        if (selectedUser != null && showDeleteConfirmation("Ban User")) {
+            DataBase.users.remove(selectedUser);
+            refreshUserLists();
+            System.out.println("User " + selectedUser.getUsername() + " has been banned.");
+        }
+    }
+
+
+
 }

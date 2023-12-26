@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 
 public class LoginPage {
 
@@ -35,7 +36,15 @@ public class LoginPage {
 
         User authenticatedUser = authenticate(username, password);
         if (authenticatedUser != null) {
-            navigateToAdminPage();
+            if (!authenticatedUser.ban){
+                if(authenticatedUser instanceof Admin){
+                    navigateToAdminPage();
+                }
+                else if(authenticatedUser instanceof Editor){
+                    navigateToEditorPage();
+                }
+            }
+
         }
     }
 
@@ -58,6 +67,21 @@ public class LoginPage {
             Stage stage = (Stage) usernameField.getScene().getWindow();
             stage.setScene(adminScene);
             stage.setTitle("Admin Page");
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading the admin page: " + e.getMessage());
+        }
+    }
+    private void navigateToEditorPage() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditorPage.fxml"));
+            Parent editorPageParent = fxmlLoader.load();
+
+            Scene editorScene = new Scene(editorPageParent);
+
+            Stage stage = (Stage) usernameField.getScene().getWindow();
+            stage.setScene(editorScene);
+            stage.setTitle("Editor Page");
             stage.show();
         } catch (IOException e) {
             System.err.println("Error loading the admin page: " + e.getMessage());

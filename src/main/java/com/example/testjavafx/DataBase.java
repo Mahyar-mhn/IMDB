@@ -7,12 +7,16 @@ public class DataBase {
     static ArrayList<User> users = new ArrayList<>();
     static ArrayList<Movie> movies = new ArrayList<>();
     static ArrayList<Review> reviews = new ArrayList<>();
+    static ArrayList<User> banUsers = new ArrayList<>();
     int id=1;
 
     public void initializeAPP() {
         // Create and add an admin user
         Admin admin = new Admin("admin", "admin", "mahyar", "mohammadian", 19, 1, Gender.MALE, null);
         users.add(admin);
+
+        Editor editor = new Editor("editor", "editor", "Mahyar", "MHN", 19, 1, Gender.MALE, null);
+        users.add(editor);
 
         // Create movies
         createAndAddMovie( id++,"First Movie", Genre.ACTION, 5, "sampleTrailer1", "Summary 1", "posterURL1", "English");

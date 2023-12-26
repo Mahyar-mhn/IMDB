@@ -257,12 +257,11 @@ public class AdminPage {
     private void banUser() {
         User selectedUser = usersListView2.getSelectionModel().getSelectedItem();
         if (selectedUser != null && showDeleteConfirmation("Ban User")) {
-            DataBase.users.remove(selectedUser);
-            refreshUserLists();
+            selectedUser.ban = true;
+//            DataBase.users.remove(selectedUser);
+//            refreshUserLists();
             System.out.println("User " + selectedUser.getUsername() + " has been banned.");
         }
     }
-
-
 
 }

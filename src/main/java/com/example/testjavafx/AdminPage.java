@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
 
 public class AdminPage {
@@ -25,6 +26,9 @@ public class AdminPage {
     private ListView<User> usersListView;
     @FXML
     private ListView<User> usersListView2;
+
+    @FXML
+    private ListView<Edit> editsListView;
 
 
     @FXML
@@ -59,6 +63,12 @@ public class AdminPage {
     private AnchorPane UserPane1;
     @FXML
     private AnchorPane UserPane2;
+    @FXML
+    private AnchorPane EditPane;
+    @FXML
+    private AnchorPane EditPane1;
+    @FXML
+    private AnchorPane EditPane2;
 
 
     public void initialize() {
@@ -66,6 +76,7 @@ public class AdminPage {
         profile.setVisible(true);
         hideAllMoviePanes();
         hideAllUserPanes();
+        hideAllEditPanes();
         populateLists();
     }
 
@@ -79,12 +90,18 @@ public class AdminPage {
         UserPane1.setVisible(false);
         UserPane2.setVisible(false);
     }
+    private void hideAllEditPanes() {
+        EditPane.setVisible(false);
+        EditPane1.setVisible(false);
+        EditPane2.setVisible(false);
+    }
 
     private void populateLists() {
         moviesListView.getItems().addAll(DataBase.movies);
         moviesListView2.getItems().addAll(DataBase.movies);
         usersListView.getItems().addAll(DataBase.users);
         usersListView2.getItems().addAll(DataBase.users);
+        editsListView.getItems().addAll(DataBase.edits);
         moviesListView.setCellFactory(list -> new ColoredListCell<>());
         usersListView.setCellFactory(list -> new ColoredListCell<>());
     }
@@ -109,6 +126,7 @@ public class AdminPage {
         DashBoardPane.setVisible(false);
         hideAllMoviePanes();
         hideAllUserPanes();
+        hideAllEditPanes();
         moviesPane.setVisible(true);
         moviesPane1.setVisible(true);
         moviesPane2.setVisible(true);
@@ -117,6 +135,7 @@ public class AdminPage {
     private void handleUsersButtonClick() {
         DashBoardPane.setVisible(false);
         hideAllMoviePanes();
+        hideAllEditPanes();
         moviesPane.setVisible(false);
         moviesPane1.setVisible(false);
         moviesPane2.setVisible(false);
@@ -126,10 +145,26 @@ public class AdminPage {
     }
 
     @FXML
+    private void handleeditsButtonClick() {
+        DashBoardPane.setVisible(false);
+        hideAllMoviePanes();
+        hideAllUserPanes();
+        moviesPane.setVisible(false);
+        moviesPane1.setVisible(false);
+        moviesPane2.setVisible(false);
+        UserPane.setVisible(false);
+        UserPane1.setVisible(false);
+        UserPane2.setVisible(false);
+        EditPane.setVisible(true);
+        EditPane1.setVisible(true);
+        EditPane2.setVisible(true);
+    }
+    @FXML
     private void handleDashboardButtonClick() {
         DashBoardPane.setVisible(true);
         hideAllMoviePanes();
         hideAllUserPanes();
+        hideAllEditPanes();
     }
 
     @FXML
@@ -174,6 +209,9 @@ public class AdminPage {
         usersListView2.getItems().setAll(DataBase.users);
     }
 
+    private void refresheditLists() {
+        editsListView.getItems().setAll(DataBase.edits);
+    }
     @FXML
     private void editMovie() {
         try {
@@ -261,6 +299,27 @@ public class AdminPage {
 //            DataBase.users.remove(selectedUser);
 //            refreshUserLists();
             System.out.println("User " + selectedUser.getUsername() + " has been banned.");
+        }
+    }
+
+    @FXML
+    private void ApplyEdit(){
+        Edit selectedEdit = editsListView.getSelectionModel().getSelectedItem();
+        if(selectedEdit != null){
+            selectedEdit.setApproved(true);
+            int id = selectedEdit.getMovieId();
+            String editedPart = selectedEdit.getEditedField();
+            for (Movie movie: DataBase.movies) {
+                if (movie.id == id){
+                    if(Objects.equals(movie.title, selectedEdit.getOldValue())){
+                        movie.title = selectedEdit.getNewValue();
+                        refresheditLists();
+                        refreshMovieLists();
+                        return;
+                    }
+                }
+            }
+
         }
     }
 

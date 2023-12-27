@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -22,11 +21,6 @@
                   <Image url="@user_username_people_account_avatar_profile_person_icon_258962.png" />
                </image>
             </ImageView>
-            <JFXButton layoutX="33.0" layoutY="398.0" prefHeight="26.0" prefWidth="186.0" text="Add Review" textFill="#52616b">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXButton>
             <Button fx:id="Movies" layoutX="99.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleMoviesButtonClick" text="Movies" />
             <Button fx:id="DashBoard" layoutX="88.0" layoutY="277.0" mnemonicParsing="false" onAction="#handleDashboardButtonClick" text="DashBoard" />
             <Label layoutX="52.0" layoutY="124.0" text="Welcome">
@@ -40,6 +34,7 @@
                </font>
             </Button>
             <Button fx:id="Users" layoutX="102.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleUsersButtonClick" text="Users" />
+            <Button layoutX="105.0" layoutY="403.0" mnemonicParsing="false" onAction="#handleeditsButtonClick" text="Edits" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="moviesPane" layoutX="224.0" prefHeight="606.0" prefWidth="650.0" visible="false">
@@ -94,7 +89,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="UserPane" layoutX="224.0" layoutY="195.0" prefHeight="608.0" prefWidth="654.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="224.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="UserPane" layoutX="224.0" layoutY="195.0" prefHeight="608.0" prefWidth="654.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="224.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane fx:id="UserPane1" layoutX="310.0" layoutY="1.0" prefHeight="606.0" prefWidth="343.0">
                <children>
@@ -110,6 +105,20 @@
                   <TextField fx:id="userNameTextField" layoutX="31.0" layoutY="49.0" promptText="name of user" />
                   <TextField fx:id="updatedUserNameTextField" layoutX="25.0" layoutY="524.0" promptText="new name of User" />
                   <TextField fx:id="userIdTextField" layoutX="25.0" layoutY="567.0" promptText="Id of User" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="EditPane" layoutX="224.0" prefHeight="606.0" prefWidth="653.0">
+         <children>
+            <AnchorPane fx:id="EditPane1" layoutX="8.0" layoutY="2.0" prefHeight="255.0" prefWidth="638.0">
+               <children>
+                  <ListView fx:id="editsListView" layoutX="219.0" layoutY="28.0" prefHeight="255.2" prefWidth="638.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="EditPane2" layoutY="256.0" prefHeight="349.0" prefWidth="653.0">
+               <children>
+                  <Button layoutX="271.0" layoutY="37.0" mnemonicParsing="false" onAction="#ApplyEdit" prefHeight="26.0" prefWidth="111.0" text="Apply Edit" />
                </children>
             </AnchorPane>
          </children>

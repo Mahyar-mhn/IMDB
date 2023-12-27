@@ -8,6 +8,7 @@ public class DataBase {
     static ArrayList<Movie> movies = new ArrayList<>();
     static ArrayList<Review> reviews = new ArrayList<>();
     static ArrayList<User> banUsers = new ArrayList<>();
+    static ArrayList<Edit> edits = new ArrayList<>();
     int id=1;
 
     public void initializeAPP() {

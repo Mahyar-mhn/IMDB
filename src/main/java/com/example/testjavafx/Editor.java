@@ -15,11 +15,11 @@ public class Editor extends User {
         return edits;
     }
 
-    public void suggestEdit(String editedField, String oldValue, String newValue) {
-        Edit edit = new Edit(this, editedField, oldValue, newValue);
-        edits.add(edit);
-        System.out.println("Edit suggestion submitted successfully");
-    }
+//    public void suggestEdit(String editedField, String oldValue, String newValue) {
+//        Edit edit = new Edit(this, editedField, oldValue, newValue);
+//        edits.add(edit);
+//        System.out.println("Edit suggestion submitted successfully");
+//    }
 
     public void addReleaseDate(Movie movie, Date releaseDate) {
         movie.setRealeaseDate(releaseDate);

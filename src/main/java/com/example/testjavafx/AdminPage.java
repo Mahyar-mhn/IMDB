@@ -30,6 +30,8 @@ public class AdminPage {
     @FXML
     private ListView<Edit> editsListView;
 
+    @FXML
+    private Label welcomeLabel;
 
     @FXML
     private TextField movieNameTextField;
@@ -69,6 +71,13 @@ public class AdminPage {
     private AnchorPane EditPane1;
     @FXML
     private AnchorPane EditPane2;
+    private User loggedInUser;
+    public void setLoggedInUser(User user) {
+        this.loggedInUser = user;
+    }
+    public void setWelcomeLabel(){
+        welcomeLabel.setText(loggedInUser.firstName);
+    }
 
 
     public void initialize() {
@@ -79,6 +88,9 @@ public class AdminPage {
         hideAllEditPanes();
         populateLists();
     }
+
+
+
 
     private void hideAllMoviePanes() {
         moviesPane.setVisible(false);
@@ -308,7 +320,7 @@ public class AdminPage {
         if(selectedEdit != null){
             selectedEdit.setApproved(true);
             int id = selectedEdit.getMovieId();
-            String editedPart = selectedEdit.getEditedField();
+            //String editedPart = selectedEdit.getEditedField();
             for (Movie movie: DataBase.movies) {
                 if (movie.id == id){
                     if(Objects.equals(movie.title, selectedEdit.getOldValue())){

@@ -21,8 +21,6 @@ public class EditorPage {
     @FXML
     private ListView<Edit> editListView;
 
-    @FXML
-    private TextField username;
 
     @FXML
     private TextField partToEdit;
@@ -33,6 +31,11 @@ public class EditorPage {
     @FXML
     private TextField newValue;
 
+    private User loggedInUser;
+
+    public void setLoggedInUser(User user) {
+        this.loggedInUser = user;
+    }
     @FXML
     private void initialize() {
         refreshLists();
@@ -50,7 +53,7 @@ public class EditorPage {
     @FXML
     private void editMovieRequest() {
         Movie selectedMovie = moviesListView.getSelectionModel().getSelectedItem();
-        String editorUsername = username.getText().trim();
+        String editorUsername = loggedInUser.username;
         String partOfMovie = partToEdit.getText().trim();
         String oldVal = oldValue.getText().trim();
         String newVal = newValue.getText().trim();

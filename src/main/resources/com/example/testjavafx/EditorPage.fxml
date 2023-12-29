@@ -5,7 +5,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testjavafx.EditorPage">
    <children>
       <AnchorPane layoutX="325.0" layoutY="78.0" prefHeight="600.0" prefWidth="870.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -15,7 +14,6 @@
             <TextField fx:id="oldValue" layoutX="76.0" layoutY="388.0" prefHeight="26.0" prefWidth="178.0" promptText="old value" />
             <TextField fx:id="newValue" layoutX="77.0" layoutY="428.0" prefHeight="26.0" prefWidth="178.0" promptText="new value" />
             <TextField fx:id="partToEdit" layoutX="77.0" layoutY="345.0" prefHeight="26.0" prefWidth="178.0" promptText="name of part you want to edit" />
-            <TextField fx:id="username" layoutX="77.0" layoutY="300.0" prefHeight="26.0" prefWidth="178.0" promptText="Type your username" />
             <ListView fx:id="editListView" layoutX="517.0" layoutY="263.0" prefHeight="277.0" prefWidth="298.0" />
             <Button layoutX="376.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleSignOutButtonClick" text="SignOut" />
          </children>

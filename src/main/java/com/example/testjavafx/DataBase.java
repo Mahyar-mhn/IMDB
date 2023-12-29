@@ -19,6 +19,9 @@ public class DataBase {
         Editor editor = new Editor("editor", "editor", "Mahyar", "MHN", 19, 1, Gender.MALE, null);
         users.add(editor);
 
+        Member member = new Member("member", "member", "Mahyar", "Mohammadian", 19, 1, Gender.MALE, null);
+        users.add(member);
+
         // Create movies
         createAndAddMovie( id++,"First Movie", Genre.ACTION, 5, "sampleTrailer1", "Summary 1", "posterURL1", "English");
         createAndAddMovie(id++,"Second Movie", Genre.COMEDY, 4, "sampleTrailer2", "Summary 2", "posterURL2", "English");

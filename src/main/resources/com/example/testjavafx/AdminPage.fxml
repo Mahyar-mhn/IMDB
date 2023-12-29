@@ -35,6 +35,11 @@
             </Button>
             <Button fx:id="Users" layoutX="102.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleUsersButtonClick" text="Users" />
             <Button layoutX="105.0" layoutY="403.0" mnemonicParsing="false" onAction="#handleeditsButtonClick" text="Edits" />
+            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="63.0" layoutY="178.0" prefHeight="26.0" prefWidth="123.0" text="test" textAlignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="moviesPane" layoutX="224.0" prefHeight="606.0" prefWidth="650.0" visible="false">

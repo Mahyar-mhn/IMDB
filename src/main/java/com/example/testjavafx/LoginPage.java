@@ -23,6 +23,8 @@ public class LoginPage {
     @FXML
     private Button loginButton;
 
+    private User loggedInUser;
+
     // Initialize method for the FXML (if you choose to set the action here)
     @FXML
     public void initialize() {
@@ -34,14 +36,16 @@ public class LoginPage {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        User authenticatedUser = authenticate(username, password);
-        if (authenticatedUser != null) {
-            if (!authenticatedUser.ban){
-                if(authenticatedUser instanceof Admin){
+        loggedInUser = authenticate(username, password);
+        if (loggedInUser != null) {
+            if (!loggedInUser.ban){
+                if(loggedInUser instanceof Admin){
                     navigateToAdminPage();
                 }
-                else if(authenticatedUser instanceof Editor){
+                else if(loggedInUser instanceof Editor){
                     navigateToEditorPage();
+                } else if (loggedInUser instanceof Member) {
+                    navigateToMemberPage();
                 }
             }
 
@@ -62,6 +66,9 @@ public class LoginPage {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AdminPage.fxml"));
             Parent adminPageParent = fxmlLoader.load();
 
+            AdminPage adminPageController = fxmlLoader.getController(); // Assuming AdminPage has a reference to itself as its controller.
+            adminPageController.setLoggedInUser(loggedInUser); // Set the logged-in user in the AdminPage
+            adminPageController.setWelcomeLabel();
             Scene adminScene = new Scene(adminPageParent);
 
             Stage stage = (Stage) usernameField.getScene().getWindow();
@@ -77,11 +84,32 @@ public class LoginPage {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditorPage.fxml"));
             Parent editorPageParent = fxmlLoader.load();
 
+            EditorPage editorPageController = fxmlLoader.getController();;
+            editorPageController.setLoggedInUser(loggedInUser);
             Scene editorScene = new Scene(editorPageParent);
 
             Stage stage = (Stage) usernameField.getScene().getWindow();
             stage.setScene(editorScene);
             stage.setTitle("Editor Page");
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading the admin page: " + e.getMessage());
+        }
+    }
+
+    private void navigateToMemberPage() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MemberPage.fxml"));
+            Parent memberPageParent = fxmlLoader.load();
+
+            MemberPage memberPageController = fxmlLoader.getController();
+            memberPageController.setLoggedInUser(loggedInUser);
+            memberPageController.setWelcomeLabel();
+            Scene memberScene = new Scene(memberPageParent);
+
+            Stage stage = (Stage) usernameField.getScene().getWindow();
+            stage.setScene(memberScene);
+            stage.setTitle("MemberPage");
             stage.show();
         } catch (IOException e) {
             System.err.println("Error loading the admin page: " + e.getMessage());

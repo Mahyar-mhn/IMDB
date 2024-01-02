@@ -9,6 +9,13 @@ public class Member extends User{
     int id;
     ArrayList<Review> reviews = new ArrayList<>();
     ArrayList<Report> reports = new ArrayList<>();
+    ArrayList<Movie> favoriteMovies = new ArrayList<>();
+    ArrayList<Movie> recommendMovies = new ArrayList<>();
+
+    public ArrayList<Movie> getFavoriteMovies() {
+        return favoriteMovies;
+    }
+
     private Map<String, List<Movie>> personalLists = new HashMap<>();
     ArrayList<Member> followedMembers = new ArrayList<>();
     ArrayList<Staff> followedStaff = new ArrayList<>();
@@ -139,5 +146,18 @@ public class Member extends User{
         System.out.println("Content reported successfully. Admins will review it.");
     }
 
+    public ArrayList<Movie> recommendMovies(){
+
+        for (Movie m:DataBase.movies) {
+            for (Movie fm:favoriteMovies) {
+                if (!favoriteMovies.contains(m)) {
+                    if (m.genre == fm.genre) {
+                        recommendMovies.add(m);
+                    }
+                }
+            }
+        }
+        return recommendMovies;
+    }
 }
 

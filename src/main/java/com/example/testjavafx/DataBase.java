@@ -21,6 +21,8 @@ public class DataBase {
 
         Member member = new Member("member", "member", "Mahyar", "Mohammadian", 19, 1, Gender.MALE, null);
         users.add(member);
+        Member member2 = new Member("member2", "member2", "Mahyar2", "Mohammadian2", 192, 12, Gender.MALE, null);
+        users.add(member2);
 
         // Create movies
         createAndAddMovie( id++,"First Movie", Genre.ACTION, 5, "sampleTrailer1", "Summary 1", "posterURL1", "English");
@@ -28,6 +30,7 @@ public class DataBase {
         createAndAddMovie( id++,"Third Movie", Genre.DRAMA, 4, "sampleTrailer3", "Summary 3", "posterURL3", "Spanish");
         createAndAddMovie(id++,"Fourth Movie", Genre.HORROR, 3, "sampleTrailer4", "Summary 4", "posterURL4", "English");
         createAndAddMovie(id++,"Fifth Movie", Genre.SCIENCE_FICTION, 4, "sampleTrailer5", "Summary 5", "posterURL5", "English");
+        createAndAddMovie(id++,"Sixth Movie", Genre.ACTION, 4, "sampleTrailer6", "Summary 6", "posterURL6", "English");
 
     }
 

@@ -140,7 +140,7 @@ public class Movie {
         this.staff = staff;
     }
 
-    private void calculateAverageRating() {
+    private double calculateAverageRating() {
         if (!reviews.isEmpty()) {
             double totalRating = 0;
             for (Review review : reviews) {
@@ -148,6 +148,7 @@ public class Movie {
             }
             averageRating = totalRating / reviews.size();
         }
+        return averageRating;
     }
 
 
@@ -158,8 +159,7 @@ public class Movie {
         stringBuilder.append("Movie ID: ").append(id).append(" ");
         stringBuilder.append("Title: ").append(title).append(" ");
         stringBuilder.append("Genre: ").append(genre).append(" ");
-        stringBuilder.append("Rate: ").append(rate).append(" ");
-        stringBuilder.append("Average Rating: ").append(averageRating).append(" ");
+        stringBuilder.append("Average Rating: ").append(calculateAverageRating()).append(" ");
         stringBuilder.append("Trailer: ").append(trailer).append(" ");
         stringBuilder.append("Summary: ").append(summary).append(" ");
         stringBuilder.append("Poster: ").append(Poster).append(" ");

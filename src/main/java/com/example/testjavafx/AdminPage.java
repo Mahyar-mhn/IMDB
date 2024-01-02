@@ -115,7 +115,10 @@ public class AdminPage {
         usersListView2.getItems().addAll(DataBase.users);
         editsListView.getItems().addAll(DataBase.edits);
         moviesListView.setCellFactory(list -> new ColoredListCell<>());
+        moviesListView2.setCellFactory(list -> new ColoredListCell<>());
         usersListView.setCellFactory(list -> new ColoredListCell<>());
+        usersListView2.setCellFactory(list -> new ColoredListCell<>());
+        editsListView.setCellFactory(list -> new ColoredListCell<>());
     }
 
     private static class ColoredListCell<T> extends ListCell<T> {
@@ -124,11 +127,11 @@ public class AdminPage {
             super.updateItem(item, empty);
             if (empty || item == null) {
                 setText(null);
-                setStyle("-fx-background-color:  #1e2022;");
+                setStyle("-fx-background-color:  #10426a;");
             } else {
                 setText(item.toString());
                 setTextFill(Color.valueOf("#f0f5f9"));
-                setStyle("-fx-background-color:  #1e2022;");
+                setStyle("-fx-background-color:  #10426a;");
             }
         }
     }

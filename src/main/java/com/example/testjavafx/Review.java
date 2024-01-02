@@ -99,5 +99,6 @@ public class Review {
         isHelpful = false;
         isNotHelpful = true;
     }
+
 }
 

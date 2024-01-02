@@ -27,7 +27,15 @@ public class MemberPage {
     @FXML
     private ListView<User> SearchList;
     @FXML
+    private ListView<Movie> MovieSearchList;
+    @FXML
+    private ListView<Movie> FavoritesMovies;
+    @FXML
     private TextField SearchBar;
+    @FXML
+    private TextField MovieSearchBar;
+    @FXML
+    private TextField Rate;
     @FXML
     private Label welcomeLabel;
     @FXML
@@ -36,6 +44,8 @@ public class MemberPage {
     private AnchorPane Dashboard;
     @FXML
     private AnchorPane Search;
+    @FXML
+    private AnchorPane Lists;
 
 
     private User loggedInUser;
@@ -51,21 +61,32 @@ public class MemberPage {
         Dashboard.setVisible(true);
         Profile.setVisible(true);
         hideAllSearchPanes();
+        hideAllListsPanes();
         populateLists();
     }
     private void hideAllSearchPanes() {
         Search.setVisible(false);
+    }
+    private void hideAllListsPanes() {
+        Lists.setVisible(false);
     }
     private void populateLists() {
         AllMovies.getItems().addAll(DataBase.movies);
 
         if (loggedInUser instanceof Member) {
             Followers.getItems().addAll(((Member) loggedInUser).followedMembers);
+            FavoritesMovies.getItems().addAll(((Member) loggedInUser).favoriteMovies);
+            RecommendMovies.getItems().addAll(((Member) loggedInUser).recommendMovies());
         }
 
 
         AllMovies.setCellFactory(list -> new MemberPage.ColoredListCell<>());
         Followers.setCellFactory(list -> new MemberPage.ColoredListCell<>());
+        FavoritesMovies.setCellFactory(list -> new MemberPage.ColoredListCell<>());
+        SearchList.setCellFactory(list -> new MemberPage.ColoredListCell<>());
+        MovieSearchList.setCellFactory(list -> new MemberPage.ColoredListCell<>());
+        RecommendMovies.setCellFactory(list -> new MemberPage.ColoredListCell<>());
+
     }
 
     private static class ColoredListCell<T> extends ListCell<T> {
@@ -88,15 +109,26 @@ public class MemberPage {
     private void handleDashboardButtonClick() {
         Dashboard.setVisible(true);
         hideAllSearchPanes();
+        hideAllListsPanes();
+        if(((Member)loggedInUser).recommendMovies != null){
+            RecommendMovies.getItems().addAll(((Member) loggedInUser).recommendMovies());
+        }
 
     }
     @FXML
     private void handleSearchButtonClick() {
         Dashboard.setVisible(false);
         Search.setVisible(true);
+        hideAllListsPanes();
 
     }
 
+    @FXML
+    private void handleListsButtonClick() {
+        Dashboard.setVisible(false);
+        Lists.setVisible(true);
+        hideAllSearchPanes();
+    }
     @FXML
     private void handleSignOutButtonClick(ActionEvent event) {
         // Access the Stage
@@ -129,6 +161,17 @@ public class MemberPage {
         SearchList.refresh();
     }
 
+    public void SearchMovie(){
+        MovieSearchList.getItems().clear();
+        String movieName = MovieSearchBar.getText();
+        for (Movie movie:DataBase.movies) {
+            if(Objects.equals(movie.title, movieName)){
+                MovieSearchList.getItems().add(movie);
+            }
+        }
+        MovieSearchList.refresh();
+    }
+
     @FXML
     private void handleFollowButtonClick() {
         User selectedUser = SearchList.getSelectionModel().getSelectedItem();
@@ -138,4 +181,30 @@ public class MemberPage {
         Followers.refresh();
 
     }
+    @FXML
+    private void handleAddToFavoriteListButtonClick() {
+        FavoritesMovies.getItems().clear();
+        Movie selectedMovie = MovieSearchList.getSelectionModel().getSelectedItem();
+        if (selectedMovie != null && !(((Member)loggedInUser).favoriteMovies.contains(selectedMovie))){
+            ((Member)loggedInUser).favoriteMovies.add(selectedMovie);
+        }
+        FavoritesMovies.getItems().addAll(((Member)loggedInUser).favoriteMovies);
+        FavoritesMovies.refresh();
+    }
+
+    @FXML
+    private void handleRateButtonClick() {
+        Movie selectedMovie = MovieSearchList.getSelectionModel().getSelectedItem();
+        if (selectedMovie != null){
+            int rate = Integer.parseInt(Rate.getText().trim());
+            Review review = new Review(loggedInUser, selectedMovie, rate,null,false);
+            selectedMovie.reviews.add(review);
+            AllMovies.refresh();
+            RecommendMovies.refresh();
+            MovieSearchList.refresh();
+            FavoritesMovies.refresh();
+        }
+
+    }
+
 }

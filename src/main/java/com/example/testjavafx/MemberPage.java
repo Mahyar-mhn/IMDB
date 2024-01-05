@@ -23,6 +23,10 @@ public class MemberPage {
     @FXML
     private ListView<User> Followers;
     @FXML
+    private ListView<User> Followers2;
+    @FXML
+    private ListView<Movie> FollowerMovieList;
+    @FXML
     private ListView<Movie> RecommendMovies;
     @FXML
     private ListView<User> SearchList;
@@ -75,6 +79,7 @@ public class MemberPage {
 
         if (loggedInUser instanceof Member) {
             Followers.getItems().addAll(((Member) loggedInUser).followedMembers);
+            Followers2.getItems().addAll(((Member) loggedInUser).followedMembers);
             FavoritesMovies.getItems().addAll(((Member) loggedInUser).favoriteMovies);
             RecommendMovies.getItems().addAll(((Member) loggedInUser).recommendMovies());
         }
@@ -82,6 +87,7 @@ public class MemberPage {
 
         AllMovies.setCellFactory(list -> new MemberPage.ColoredListCell<>());
         Followers.setCellFactory(list -> new MemberPage.ColoredListCell<>());
+        Followers2.setCellFactory(list -> new MemberPage.ColoredListCell<>());
         FavoritesMovies.setCellFactory(list -> new MemberPage.ColoredListCell<>());
         SearchList.setCellFactory(list -> new MemberPage.ColoredListCell<>());
         MovieSearchList.setCellFactory(list -> new MemberPage.ColoredListCell<>());
@@ -176,9 +182,13 @@ public class MemberPage {
     private void handleFollowButtonClick() {
         User selectedUser = SearchList.getSelectionModel().getSelectedItem();
         if (selectedUser != null && !(Followers.getItems().contains(selectedUser))){
+            ((Member)loggedInUser).followedMembers.add((Member) selectedUser);
             Followers.getItems().add(selectedUser);
+            Followers2.getItems().add(selectedUser);
+
         }
         Followers.refresh();
+        Followers2.refresh();
 
     }
     @FXML
@@ -205,6 +215,14 @@ public class MemberPage {
             FavoritesMovies.refresh();
         }
 
+    }
+    @FXML
+    private void ShowFriendList(){
+        User selectedUser = Followers2.getSelectionModel().getSelectedItem();
+        if(selectedUser != null){
+            FollowerMovieList.getItems().addAll(((Member)selectedUser).favoriteMovies);
+        }
+        FollowerMovieList.refresh();
     }
 
 }

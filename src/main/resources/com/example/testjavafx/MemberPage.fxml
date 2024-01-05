@@ -313,6 +313,47 @@
                         </Lighting>
                      </effect>
                   </Label>
+                  <ListView fx:id="Followers2" layoutX="27.0" layoutY="317.0" prefHeight="260.0" prefWidth="110.0" style="-fx-background-color: #7f1a0f;" />
+                  <Label layoutX="25.0" layoutY="282.0" text="Followers" textFill="#ff4405">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
+                  <ListView fx:id="FollowerMovieList" layoutX="304.0" layoutY="433.0" prefHeight="144.0" prefWidth="306.0" style="-fx-background-color: #7f1a0f;" />
+                  <Label layoutX="304.0" layoutY="384.0" prefHeight="35.0" prefWidth="191.0" text="Your Friend's Movie List" textFill="#ff4405">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="155.0" layoutY="551.0" mnemonicParsing="false" onAction="#ShowFriendList" style="-fx-background-color: #fff4ed;" text="Show Movies" textFill="#ff4405">
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="0.2666666805744171" blue="0.019607843831181526" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Button>
                </children>
             </AnchorPane>
          </children>

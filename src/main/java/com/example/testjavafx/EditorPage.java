@@ -6,8 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,8 +22,7 @@ public class EditorPage {
     private ListView<Movie> moviesListView;
 
     @FXML
-    private ListView<Edit> editListView;
-
+    private Label welcomeLabel;
 
     @FXML
     private TextField partToEdit;
@@ -36,18 +38,35 @@ public class EditorPage {
     public void setLoggedInUser(User user) {
         this.loggedInUser = user;
     }
+    public void setWelcomeLabel(){
+        welcomeLabel.setText(loggedInUser.firstName);
+    }
     @FXML
     private void initialize() {
         refreshLists();
     }
 
+
+    private static class ColoredListCell<T> extends ListCell<T> {
+        @Override
+        protected void updateItem(T item, boolean empty) {
+            super.updateItem(item, empty);
+            if (empty || item == null) {
+                setText(null);
+                setStyle("-fx-background-color:  #B6C4B6;");
+            } else {
+                setText(item.toString());
+                setTextFill(Color.valueOf("#163020"));
+                setStyle("-fx-background-color:  #B6C4B6;");
+            }
+        }
+    }
     @FXML
     private void refreshLists() {
         moviesListView.getItems().clear();
         moviesListView.getItems().addAll(DataBase.movies);
 
-        editListView.getItems().clear();
-        editListView.getItems().addAll(DataBase.edits);
+        moviesListView.setCellFactory(list -> new EditorPage.ColoredListCell<>());
     }
 
     @FXML

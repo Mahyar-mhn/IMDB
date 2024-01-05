@@ -5,14 +5,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.Objects;
 
 public class LoginPage {
+    @FXML
+    private AnchorPane LoginPane;
+    @FXML
+    private AnchorPane signUpPane;
 
     @FXML
     private TextField usernameField;
@@ -22,13 +29,31 @@ public class LoginPage {
 
     @FXML
     private Button loginButton;
+    @FXML
+    private Button signUp;
+    @FXML
+    private TextField username;
+    @FXML
+    private TextField password;
+    @FXML
+    private TextField firstname;
+    @FXML
+    private TextField lastname;
+    @FXML
+    private TextField age;
+    @FXML
+    private ChoiceBox<Gender> gender = new ChoiceBox<>();
 
     private User loggedInUser;
 
     // Initialize method for the FXML (if you choose to set the action here)
     @FXML
     public void initialize() {
+        LoginPane.setVisible(true);
+        signUpPane.setVisible(false);
+        gender.getItems().addAll(Gender.values());
         loginButton.setOnAction(actionEvent -> handleLogin());
+
     }
 
     @FXML
@@ -44,12 +69,29 @@ public class LoginPage {
                 }
                 else if(loggedInUser instanceof Editor){
                     navigateToEditorPage();
-                } else if (loggedInUser instanceof Member) {
+                } else {
                     navigateToMemberPage();
                 }
             }
 
         }
+    }
+    @FXML
+    private void handleSignUp(){
+        if(LoginPane.isVisible()){
+            LoginPane.setVisible(false);
+            signUpPane.setVisible(true);
+            signUp.setText("Login");
+
+        }
+        else{
+            LoginPane.setVisible(true);
+            signUpPane.setVisible(false);
+            signUp.setText("SignUp");
+        }
+        User user = new User(username.getText(), password.getText(), firstname.getText(), lastname.getText(), Integer.parseInt(age.getText()), 7, gender.getValue(),null);
+        DataBase.users.add(user);
+
     }
 
     private User authenticate(String username, String password) {
@@ -86,6 +128,7 @@ public class LoginPage {
 
             EditorPage editorPageController = fxmlLoader.getController();;
             editorPageController.setLoggedInUser(loggedInUser);
+            editorPageController.setWelcomeLabel();
             Scene editorScene = new Scene(editorPageParent);
 
             Stage stage = (Stage) usernameField.getScene().getWindow();

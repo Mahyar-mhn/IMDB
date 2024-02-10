@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testjavafx.MemberPage">
+   <children>
+      <AnchorPane layoutX="217.0" layoutY="177.0" prefHeight="600.0" prefWidth="870.0" style="-fx-background-color: #fff4ed;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="Profile" layoutX="-69.0" prefHeight="600.0" prefWidth="304.0" style="-fx-background-color: linear-gradient(#450905 0%,#9e1b0e  25%, #c72107 75%, #f03106 100%); -fx-background-radius: 30px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-69.0" AnchorPane.rightAnchor="635.4" AnchorPane.topAnchor="0.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <children>
+                  <Label alignment="CENTER" layoutX="110.0" layoutY="26.0" text="Welcome" textFill="#fff4ed">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                     <effect>
+                        <Lighting bumpInput="$null">
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="1.0" green="1.0" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
+                  <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="104.0" layoutY="80.0" prefHeight="54.0" prefWidth="160.0" text="test" textFill="#fff4ed">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Glow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="1.0" green="1.0" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
+                  <Button layoutX="139.0" layoutY="282.0" mnemonicParsing="false" onAction="#handleSearchButtonClick" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #fff4ed;" text="Search" textFill="#ff4405">
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="0.2666666805744171" blue="0.019607843831181526" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Button>
+                  <Button layoutX="139.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleListsButtonClick" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #fff4ed;" text="MyLists" textFill="#ff4405">
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="0.2666666805744171" blue="0.019607843831181526" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Button>
+                  <Button layoutX="139.0" layoutY="231.0" mnemonicParsing="false" onAction="#handleDashboardButtonClick" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #fff4ed;" text="DashBoard" textFill="#ff4405">
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="0.2666666805744171" blue="0.019607843831181526" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Button>
+                  <Button layoutX="139.0" layoutY="533.0" mnemonicParsing="false" onAction="#handleSignOutButtonClick" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #fff4ed;" text="SignOut" textFill="#ff4405">
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="0.2666666805744171" blue="0.019607843831181526" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="Dashboard" layoutX="238.0" layoutY="-1.0" prefHeight="600.0" prefWidth="630.0" style="-fx-background-color: #fff4ed;" visible="false">
+               <children>
+                  <ListView fx:id="AllMovies" layoutX="42.0" layoutY="54.0" prefHeight="200.0" prefWidth="560.0" style="-fx-background-color: #7f1a0f; -fx-control-inner-background-alt: black; -fx-control-inner-border-alt: black;">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </ListView>
+                  <Label layoutX="42.0" layoutY="14.0" text="All Movies" textFill="#ff4405">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="1.0" green="0.2666666805744171" blue="0.019607843831181526" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
+                  <Label layoutX="42.0" layoutY="308.0" text="Followers" textFill="#ff4405">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="1.0" green="0.2666666805744171" blue="0.019607843831181526" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
+                  <ListView fx:id="Followers" layoutX="42.0" layoutY="359.0" prefHeight="220.0" prefWidth="100.0" style="-fx-background-color: #7f1a0f;">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </ListView>
+                  <Label layoutX="467.0" layoutY="308.0" text="Recommend" textFill="#ff4405">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="1.0" green="0.2666666805744171" blue="0.019607843831181526" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
+                  <ListView fx:id="RecommendMovies" layoutX="226.0" layoutY="359.0" prefHeight="220.0" prefWidth="375.0" style="-fx-background-color: #7f1a0f;">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </ListView>
+                  <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="160.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Movie.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="147.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@user_username_people_account_avatar_profile_person_icon_258962.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="Search" layoutX="239.0" layoutY="-1.0" prefHeight="600.0" prefWidth="630.0" visible="false">
+               <children>
+                  <TextField fx:id="SearchBar" alignment="CENTER" layoutX="191.0" layoutY="23.0" onAction="#SearchPerson" prefHeight="26.0" prefWidth="248.0" promptText="enter name of the user" style="-fx-background-color: #e4ffe4;">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.04313725605607033" green="0.3607843220233917" blue="0.10588235408067703" />
+                           </color>
+                        </DropShadow>
+                     </effect></TextField>
+                  <ListView fx:id="SearchList" layoutX="112.0" layoutY="59.0" prefHeight="200.0" prefWidth="405.0" style="-fx-background-color: #7f1a0f; -fx-control-inner-background-alt: black; -fx-control-inner-border-alt: black;">
+                     <effect>
+                        <DropShadow />
+                     </effect></ListView>
+                  <Button layoutX="289.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleFollowButtonClick" style="-fx-background-color: #e4ffe4;" text="Follow" textFill="#0b5c1b">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.04313725605607033" green="0.3607843220233917" blue="0.10588235408067703" />
+                           </color>
+                        </DropShadow>
+                     </effect></Button>
+                  <Label layoutX="14.0" layoutY="18.0" text="User Search" textFill="#ff4405">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="1.0" green="0.2666666805744171" blue="0.019607843831181526" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="300.0" text="Movie Search" textFill="#ff4405">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="1.0" green="0.2666666805744171" blue="0.019607843831181526" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
+                  <TextField fx:id="MovieSearchBar" alignment="CENTER" layoutX="191.0" layoutY="322.0" onAction="#SearchMovie" prefHeight="26.0" prefWidth="248.0" promptText="enter name of the movie" style="-fx-background-color: #e4ffe4;">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.04313725605607033" green="0.3607843220233917" blue="0.10588235408067703" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </TextField>
+                  <ListView fx:id="MovieSearchList" layoutX="112.0" layoutY="357.0" prefHeight="200.0" prefWidth="405.0" style="-fx-background-color: #7f1a0f; -fx-control-inner-background-alt: black; -fx-control-inner-border-alt: black;">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </ListView>
+                  <Button layoutX="130.0" layoutY="567.0" mnemonicParsing="false" onAction="#handleAddToFavoriteListButtonClick" style="-fx-background-color: #e4ffe4;" text="Add To Favorite List" textFill="#0b5c1b">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.04313725605607033" green="0.3607843220233917" blue="0.10588235408067703" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Button>
+                  <TextField fx:id="Rate" layoutX="439.0" layoutY="565.0" prefHeight="26.0" prefWidth="95.0" promptText="Rate the movie" style="-fx-background-color: #e4ffe4;">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.04313725605607033" green="0.3607843220233917" blue="0.10588235408067703" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </TextField>
+                  <Button layoutX="384.0" layoutY="565.0" mnemonicParsing="false" onAction="#handleRateButtonClick" style="-fx-background-color: #e4ffe4;" text="Rate" textFill="#0b5c1b">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.04313725605607033" green="0.3607843220233917" blue="0.10588235408067703" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="Lists" layoutX="235.0" layoutY="-1.0" prefHeight="600.0" prefWidth="637.0">
+               <children>
+                  <ListView fx:id="FavoritesMovies" layoutX="27.0" layoutY="59.0" prefHeight="200.0" prefWidth="584.0" style="-fx-background-color: #7f1a0f;">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </ListView>
+                  <Label layoutX="27.0" layoutY="23.0" text="Favorites" textFill="#ff4405">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="1.0" green="0.2666666805744171" blue="0.019607843831181526" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
+                  <ListView fx:id="Followers2" layoutX="27.0" layoutY="317.0" prefHeight="260.0" prefWidth="110.0" style="-fx-background-color: #7f1a0f;" />
+                  <Label layoutX="25.0" layoutY="282.0" text="Followers" textFill="#ff4405">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
+                  <ListView fx:id="FollowerMovieList" layoutX="304.0" layoutY="433.0" prefHeight="144.0" prefWidth="306.0" style="-fx-background-color: #7f1a0f;" />
+                  <Label layoutX="304.0" layoutY="384.0" prefHeight="35.0" prefWidth="191.0" text="Your Friend's Movie List" textFill="#ff4405">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="155.0" layoutY="551.0" mnemonicParsing="false" onAction="#ShowFriendList" style="-fx-background-color: #fff4ed;" text="Show Movies" textFill="#ff4405">
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="0.2666666805744171" blue="0.019607843831181526" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
